@@ -1,0 +1,11 @@
+Model Information:
+* title:	tron disk
+* source:	https://sketchfab.com/3d-models/tron-disk-01775a4113c745d29bf284c9bf166215
+* author:	Medeixo (https://sketchfab.com/medeixo)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "tron disk" (https://sketchfab.com/3d-models/tron-disk-01775a4113c745d29bf284c9bf166215) by Medeixo (https://sketchfab.com/medeixo) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
