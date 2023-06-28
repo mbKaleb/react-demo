@@ -12,7 +12,7 @@ export default class SceneInit {
     // NOTE: Camera params;
     this.fov = 45;
     this.nearPlane = 1;
-    this.farPlane = 1;
+    this.farPlane = 1000;
     this.canvasId = canvasId;
 
     // NOTE: Additional components.
@@ -30,8 +30,8 @@ export default class SceneInit {
     this.camera = new THREE.PerspectiveCamera(
       this.fov,
       window.innerWidth / window.innerHeight,
-      1,
-      3000
+      this.nearPlane,
+      this.farPlane
     );
     this.camera.position.z = 55;
 
@@ -39,6 +39,7 @@ export default class SceneInit {
     const canvas = document.getElementById(this.canvasId);
     this.renderer = new THREE.WebGLRenderer({
       canvas,
+      alpha: true,
       // NOTE: Anti-aliasing smooths out the edges.
       antialias: true,
     });

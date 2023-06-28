@@ -9,34 +9,33 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import SceneInit from './lib/SceneInit';
 
 function App() {
+  const glftLoader = new GLTFLoader();
+
   useEffect(() => {
-    const test = new SceneInit('myThreeJsCanvas');
-    test.initialize();
-    test.animate();
+    const mainScene = new SceneInit('myThreeJsCanvas');
+    mainScene.initialize();
+    mainScene.animate();
 
-    // const boxGeometry = new THREE.BoxGeometry(8, 8, 8);
-    // const boxMaterial = new THREE.MeshNormalMaterial();
-    // const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
-    // test.scene.add(boxMesh);
-
+    
     let loadedModel:any;
-    const glftLoader = new GLTFLoader();
+
     glftLoader.load('../models/tron_disk/scene.gltf', (gltfScene) => {
       loadedModel = gltfScene;
       // console.log(loadedModel);
 
       gltfScene.scene.rotation.y = Math.PI / 8;
       // gltfScene.scene.position.y = 30;
-      // gltfScene.scene.position.z = 30;
-      gltfScene.scene.scale.set(0.2, 0.2, 0.2);
-      test.scene.add(gltfScene.scene);
+      gltfScene.scene.rotation.x = 0.8;
+      gltfScene.scene.scale.set(0.1, 0.1, 0.1);
+
+      mainScene.scene.add(gltfScene.scene);
     });
 
     const animate = () => {
       if (loadedModel) {
-        loadedModel.scene.rotation.x += 0.01;
-        loadedModel.scene.rotation.y += 0.01;
-        loadedModel.scene.rotation.z += 0.01;
+        // loadedModel.scene.rotation.x += 0.01;
+        loadedModel.scene.rotation.y += 0.09;
+        // loadedModel.scene.rotation.z += 0.001;
       }
       requestAnimationFrame(animate);
     };
