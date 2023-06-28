@@ -12,7 +12,7 @@ export default class SceneInit {
     // NOTE: Camera params;
     this.fov = 45;
     this.nearPlane = 1;
-    this.farPlane = 1000;
+    this.farPlane = 1;
     this.canvasId = canvasId;
 
     // NOTE: Additional components.
@@ -31,9 +31,9 @@ export default class SceneInit {
       this.fov,
       window.innerWidth / window.innerHeight,
       1,
-      1000
+      3000
     );
-    this.camera.position.z = 48;
+    this.camera.position.z = 55;
 
     // NOTE: Specify a canvas which is already created in the HTML.
     const canvas = document.getElementById(this.canvasId);
