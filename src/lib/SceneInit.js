@@ -48,11 +48,11 @@ export default class SceneInit {
     document.body.appendChild(this.renderer.domElement);
 
     this.clock = new THREE.Clock();
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    // this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.stats = Stats(); document.body.appendChild(this.stats.dom);
 
     // ambient light which is for the whole scene
-    this.ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+    this.ambientLight = new THREE.AmbientLight(0xffffff, 1);
     this.ambientLight.castShadow = true;
     this.scene.add(this.ambientLight);
 
@@ -61,10 +61,10 @@ export default class SceneInit {
 
 
     // directional light - parallel sun rays
-    // this.directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-    // // this.directionalLight.castShadow = true;
-    // this.directionalLight.position.set(0, 32, 64);
-    // this.scene.add(this.directionalLight);
+    this.directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+    // this.directionalLight.castShadow = true;
+    this.directionalLight.position.set(0, 32, 64);
+    this.scene.add(this.directionalLight);
 
     // if window resizes
     window.addEventListener('resize', () => this.onWindowResize(), false);
@@ -86,8 +86,8 @@ export default class SceneInit {
     // requestAnimationFrame(this.animate.bind(this));
     window.requestAnimationFrame(this.animate.bind(this));
     this.render();
-    this.stats.update();
-    this.controls.update();
+    // this.stats.update();
+    // this.controls.update();
   }
 
   render() {

@@ -6,7 +6,6 @@ import * as THREE from 'three';
 // import { VOXLoader } from 'three/examples/jsm/loaders/VOXLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
-
 const tronDisk = "../models/tron_disk/scene.gltf";
 
 // @ts-ignore 
@@ -22,36 +21,50 @@ const basicRotation = (target:any) => {
 
 function App() {
   const glftLoader = new GLTFLoader();
+  let prevScrollPos = 0;
+  let loadedModel:any;
+  
+  const handleCamera = (ev:any) => { //Doesnt work lol
+    const currScrollPos = document.body.getBoundingClientRect().top;
+    let motion = (currScrollPos - prevScrollPos)
+    
+    console.log(motion)
+
+    if(loadedModel){
+      loadedModel.scene.position.y += motion
+    }
+
+    prevScrollPos = currScrollPos;
+  }
 
   useEffect(() => {
-
-    const mainScene = new SceneInit('myThreeJsCanvas');
-      mainScene.initialize();
-      mainScene.animate();
-
     
-    let loadedModel:any;
-
+    const mainScene = new SceneInit('myThreeJsCanvas');
+    mainScene.initialize();
+    mainScene.animate();
+    
+    // console.log("first")
     glftLoader.load(tronDisk, (gltfScene) => {
       loadedModel = gltfScene;
-      // console.log(loadedModel);
-
+      // gltfScene.scene.position.setX(1);
       gltfScene.scene.rotation.y = Math.PI / 8;
       gltfScene.scene.rotation.x = 0.8;
       gltfScene.scene.scale.set(0.1, 0.1, 0.1);
-
       mainScene.scene.add(gltfScene.scene);
     });
-
+    
     const animate = () => {
       if (loadedModel) { basicRotation(loadedModel)};
-
-
       requestAnimationFrame(animate);
-    };
-    animate();
-  }, []);
+    };animate();
 
+  }, []);
+  
+  onscroll = (e) => {
+    handleCamera(e)
+  };
+
+  
   return (
     <div>
       <canvas id="myThreeJsCanvas" />
